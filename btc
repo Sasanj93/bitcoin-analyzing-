@@ -1,0 +1,17 @@
+import numpy as np
+import numpy_financial as npf
+import matplotlib.pyplot as plt 
+import yfinance as yf 
+import pandas as pd
+
+data = yf.Ticker('BTC-USD')
+x = data.history('1y')['Close']
+plt.plot(x)
+plt.savefig('plot.png')
+
+ret = x
+risk = np.std(ret) * np.sqrt(365)
+sharpe = (np.mean(ret) / np.std(ret))*np.sqrt(365)
+
+print("Risk", risk)
+print("Sharpe", sharpe)
